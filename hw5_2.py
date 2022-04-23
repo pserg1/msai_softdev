@@ -34,7 +34,6 @@ class Module:
 
         for classifier in self.classifiers:
             y_preds.append(classifier.predict(X))
-
         y_preds = np.stack(y_preds)
 
         return y_preds.sum(axis=0) / self.count
@@ -63,3 +62,4 @@ if __name__ == "__main__":
     accuracy = accuracy_score(y_test, y_pred)
 
     print(f'Accuracy score achieved with ensemble = {accuracy}')
+
