@@ -4,7 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.utils import shuffle
 from sklearn.ensemble import RandomForestClassifier
 
-class CreationalPatternName:
+class Builder:
     def __init__(self, X_train, y_train):
         self.X_train = X_train
         self.y_train = y_train
@@ -32,12 +32,11 @@ if __name__ == "__main__":
     from sklearn.datasets import load_iris
     from sklearn.metrics import accuracy_score
     X, y = load_iris(return_X_y=True)
-    # X, y = shuffle(X, y, random_state=1)
     X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.8, random_state=1)
     
     clf = RandomForestClassifier(max_depth=5, n_estimators=1, random_state=1)
 
-    pattern_item = CreationalPatternName(X_train, y_train)
+    pattern_item = Builder(X_train, y_train)
     for df_share in range(10, 101, 10):
         curr_X_train, curr_y_train = pattern_item.get_subsample(df_share)
         clf.fit(curr_X_train, curr_y_train)
@@ -50,3 +49,4 @@ if __name__ == "__main__":
         2. Train Linear Regression on the subsample
         3. Save or print the score to check how df_share affects the quality
         """
+        # some changes
